@@ -11,7 +11,7 @@ class SnippetController extends AbstractController
     #[Route('/snippet', name: 'app_snippet')]
     public function index(): Response
     {
-        return $this->render('snippet/index.html.twig', [
+        return $this->render('snippet/snippet.html.twig', [
             'controller_name' => 'SnippetController',
         ]);
     }
