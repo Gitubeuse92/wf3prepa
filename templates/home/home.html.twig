@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	{{ dump(snippets) }}
-	{# {{ dump(users) }} #}
+	{# {{ dump(snippets) }} #}
+	{# {{ dump(app.user) }} #}
 	<main class="container">
 		<section class="row gap-1">
 			<aside class="col-md-3 col-sm-12">
@@ -17,8 +17,8 @@
 				<hr>
 				<p class="fs-5">À propos</p>
 				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur ut cumque quisquam
-					                    reprehenderit nam provident velit quibusdam consectetur incidunt quo! Atque enim quod dolorum iste
-					                    molestiae fugit beatae molestias explicabo.</p>
+															                    reprehenderit nam provident velit quibusdam consectetur incidunt quo! Atque enim quod dolorum iste
+															                    molestiae fugit beatae molestias explicabo.</p>
 				<p>
 					<i class="fas fa-map-marker-alt mx-1"></i>Paris, France</p>
 				<p>
@@ -39,69 +39,21 @@
 					</div>
 				</div>
 				<div class="row gap-1 justify-content-center">
-					<div class="border rounded col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
+					{% for item in snippets %}
+						<div class="border rounded col-30 m-1 p-2">
+							<h4>{{ item.title }}</h4>
+							<p>{{ item.content|slice(0,80) }}</p>
+							{# <a class="btn btn-dark" href={{ path('show_code', { id: item.id } ) }}>Voir</a> #}
+						</div>
+					{% endfor %}
+					<div class="row flex-center">
+						{{ knp_pagination_render(snippets) }}
 					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
-					<div class="border rounded col-sm-12 col-30 m-1 p-2">
-						<h4>Titre</h4>
-						<p>Extrait</p>
-						<a href="./note.html" class="btn btn-dark">Voir</a>
-					</div>
+
 				</div>
 				<!-- Liste des notes -->
 
-				{# <div class="row">
-					{% for item in snippets %}
-						<div class="card col-4 col">
-							<div class="card-body">
-								<h4 class="card-title">{{ item.title }}</h4>
-								<p class="card-text">{{ item.content|slice(0,80) }}</p>
-								<p class="card-text">{{ item.createdAt|date('d/m/Y') }}</p>
-								<a class="paper-btn" href={{ path('show_code', { id: item.id }) }}>Voir</a>
-							</div>
-						</div>
-					{% endfor %}
-				</div>
-					<div class="row flex-center">
-						{{ knp_pagination_render(snippets) }}
-					</div> #}
+				
 
 				<h2>Mes achats</h2>
 				<hr>
