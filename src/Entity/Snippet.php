@@ -23,7 +23,7 @@ class Snippet
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $CreatedAt = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $EditedAt = null;
 
     #[ORM\Column]
@@ -32,8 +32,12 @@ class Snippet
     #[ORM\Column]
     private ?bool $IsPublic = false;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?bool $IsPRO = false;
+
+    #[ORM\ManyToOne(inversedBy: 'snippets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -120,6 +124,18 @@ class Snippet
     public function setIsPRO(?bool $IsPRO): static
     {
         $this->IsPRO = $IsPRO;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
