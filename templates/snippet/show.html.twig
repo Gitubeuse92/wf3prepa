@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snippet{% endblock %}
+
+{% block body %}
+    <h1>Snippet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ snippet.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ snippet.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ snippet.content }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ snippet.CreatedAt ? snippet.CreatedAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EditedAt</th>
+                <td>{{ snippet.EditedAt ? snippet.EditedAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsPublished</th>
+                <td>{{ snippet.IsPublished ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsPublic</th>
+                <td>{{ snippet.IsPublic ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsPRO</th>
+                <td>{{ snippet.IsPRO ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_snippet_index') }}">back to list</a>
+
+    <a href="{{ path('app_snippet_edit', {'id': snippet.id}) }}">edit</a>
+
+    {{ include('snippet/_delete_form.html.twig') }}
+{% endblock %}
