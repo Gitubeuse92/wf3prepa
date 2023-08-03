@@ -21,11 +21,8 @@ class HomeController extends AbstractController
         Request $request // Chargement de Request
     ): Response {
         // On créer une requête pour récupérer les users
-        $query = $snippets->findBy(
-            ['IsPublished' => true, 'IsPublic' => true], // Pour sélectionner les users publics et publiés
-            ['CreatedAt' => 'DESC'], // Pour trier
-            9 // Pour limiter l'affichage
-        );
+        $query = $snippets->findAll();
+
 
         // On utilise le paginator pour paginer les users
         $pagination = $paginator->paginate(
@@ -53,7 +50,7 @@ class HomeController extends AbstractController
     // ): Response {
     //     // On créer une requête pour récupérer les users
     //     $query = $users->findBy(
-      //  $username, $job, $description, $city,$country,$image, $snippets
+    //  $username, $job, $description, $city,$country,$image, $snippets
     //         ['IsPublished' => true, 'IsPublic' => true], // Pour sélectionner les users publics et publiés
     //         ['CreatedAt' => 'DESC'], // Pour trier
     //         9 // Pour limiter l'affichage
